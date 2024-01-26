@@ -12,7 +12,7 @@ const userRole = {
 
 const MainLayout = () => {
   return (
-    <Layout className="h-[100vh]">
+    <Layout className="h-[100vh] ">
       <Sider breakpoint="lg" collapsedWidth="0" className="">
         <div className="demo-logo-vertical text-white flex items-center justify-center text-2xl h-20 font-bold">
           <h1>AssetFlow</h1>
@@ -25,7 +25,9 @@ const MainLayout = () => {
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0 }} />
+        <Header style={{ padding: 0 }} >
+
+        </Header>
         <Content style={{ margin: "24px 16px 0" }}>
           <div
             style={{
