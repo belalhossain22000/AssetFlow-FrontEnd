@@ -1,22 +1,14 @@
 import { Layout, Menu } from "antd";
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { createElement } from "react";
+import { sidebarItemsGenerator } from "../../utils/sidebarGenerator";
+import { routePaths } from "../../routes/userRoute";
+import { Outlet } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 
-const items = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  UserOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: createElement(icon),
-  label: `nav ${index + 1}`,
-}));
+const userRole = {
+    USER: 'user',
+  };
+
+
 
 const MainLayout = () => {
   return (
@@ -29,7 +21,7 @@ const MainLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["4"]}
-          items={items}
+          items={sidebarItemsGenerator(routePaths,userRole.USER)}
         />
       </Sider>
       <Layout>
@@ -41,7 +33,7 @@ const MainLayout = () => {
               minHeight: 360,
             }}
           >
-            <h1 className="font-bold text-5xl">main content should go here</h1>
+            <Outlet/>
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
