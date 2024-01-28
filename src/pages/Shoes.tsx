@@ -1,8 +1,10 @@
+import { useShoesQuery } from "../redux/api/shoesApi/shoesApi";
 
 const Shoes = () => {
-  return (
-    <div>Shoes</div>
-  )
-}
+  const { data } = useShoesQuery(undefined);
+  console.log(data);
 
-export default Shoes
+  return <div>Shoes</div>;
+};
+
+export default Shoes;

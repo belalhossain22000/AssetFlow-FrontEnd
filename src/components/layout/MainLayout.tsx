@@ -1,16 +1,20 @@
-import { Layout, Menu } from "antd";
+import { Button, Layout, Menu } from "antd";
 import { sidebarItemsGenerator } from "../../utils/sidebarGenerator";
 import { routePaths } from "../../routes/userRoute";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { logOut, selectCurrentUser } from "../../redux/features/authSlice";
 const { Header, Content, Footer, Sider } = Layout;
 
-const userRole = {
-    USER: 'user',
+const MainLayout = () => {
+  const user = useAppSelector(selectCurrentUser);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logOut());
+    navigate("/login");
   };
 
-
-
-const MainLayout = () => {
   return (
     <Layout className="h-[100vh] ">
       <Sider breakpoint="lg" collapsedWidth="0" className="">
@@ -21,12 +25,17 @@ const MainLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["4"]}
-          items={sidebarItemsGenerator(routePaths,userRole.USER)}
+          items={sidebarItemsGenerator(routePaths, user!.role)}
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0 }} >
-
+        <Header
+          style={{ padding: 0 }}
+          className="flex justify-end items-center"
+        >
+          <Button onClick={handleLogout} className="text-white ">
+            LogOut
+          </Button>
         </Header>
         <Content style={{ margin: "24px 16px 0" }}>
           <div
@@ -35,7 +44,7 @@ const MainLayout = () => {
               minHeight: 360,
             }}
           >
-            <Outlet/>
+            <Outlet />
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
