@@ -4,6 +4,8 @@ import { routePaths } from "./userRoute";
 import App from "../App";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import { productRroutePaths } from "./productRoute";
+
 
 export const router = createBrowserRouter([
   {
@@ -16,11 +18,16 @@ export const router = createBrowserRouter([
     children: routeGenerator(routePaths),
   },
   {
-    path: "/login",
-    element: <Login />,
+    path: "/user",
+    element: <App />,
+    children: routeGenerator(productRroutePaths),
   },
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);

@@ -18,5 +18,6 @@ export const routePaths = [
       path: 'add-shoes',
       element: <AddShoes />,
     },
+   
   ];
   

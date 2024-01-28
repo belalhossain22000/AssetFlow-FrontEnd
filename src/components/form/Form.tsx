@@ -21,7 +21,7 @@ const Form = ({ onSubmit, children, defaultValues }: TFormProps) => {
 
   return (
     <FormProvider {...methods}>
-    <form onSubmit={methods.handleSubmit(onSubmit)}>{children}</form>
+    <form className="w-full container mx-auto " onSubmit={methods.handleSubmit(onSubmit)}>{children}</form>
   </FormProvider>
   )
 }

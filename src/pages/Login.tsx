@@ -1,4 +1,4 @@
-import { Button, Row } from "antd";
+import { Row } from "antd";
 import Form from "../components/form/Form";
 import FormInput from "../components/form/FormInput";
 import { FieldValues } from "react-hook-form";
@@ -17,7 +17,7 @@ const Login = () => {
 
   // testing for default value
   const defaultValues = {
-    userId: "User Khan3",
+    username: "User Khan3",
     password: "UserPwd123!",
   };
 
@@ -26,7 +26,7 @@ const Login = () => {
     const toastId = toast.loading("Logging in");
     try {
       const userInfo = {
-        username: data.userId,
+        username: data.username,
         password: data.password,
       };
 
@@ -42,11 +42,17 @@ const Login = () => {
   };
 
   return (
-    <Row justify="center" align="middle" style={{ height: "100vh" }}>
-      <Form onSubmit={onSubmit} defaultValues={defaultValues}>
-        <FormInput type="text" name="userId" label="ID:" />
+    <Row justify="center" align="middle" className="h-[100vh]">
+      <Form  onSubmit={onSubmit} defaultValues={defaultValues}>
+        <h2 className="font-semibold text-5xl my-12 text-center text-gray-600">Login Here </h2>
+        <FormInput type="text" name="username" label="User Name" />
         <FormInput type="text" name="password" label="Password" />
-        <Button htmlType="submit">{isLoading ? "Logging in" : "LogIn"}</Button>
+        <button
+          className="w-full bg-green-600 p-3 rounded-md text-white text-lg font-semibold hover:bg-green-700 transition duration-300" 
+          type="submit"
+        >
+          {isLoading ? "Logging in" : "Login"}
+        </button>
       </Form>
     </Row>
   );

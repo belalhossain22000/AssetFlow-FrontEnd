@@ -16,7 +16,7 @@ const MainLayout = () => {
   };
 
   return (
-    <Layout className="h-[100vh] ">
+    <Layout className="h-full min-h-[100vh] relative ">
       <Sider breakpoint="lg" collapsedWidth="0" className="">
         <div className="demo-logo-vertical text-white flex items-center justify-center text-2xl h-20 font-bold">
           <h1>AssetFlow</h1>
