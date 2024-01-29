@@ -2,11 +2,12 @@ import { TShoes } from "../../type/shoe.type";
 import { useState } from "react";
 import InfoModal from "../modal/InfoModal";
 import { useDeleteShoeMutation } from "../../redux/api/shoesApi/shoesApi";
-import { Link } from "react-router-dom";
+import UpdateShoe from "../../pages/UpdateShoe";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ShoeCard = ({ shoe }: { shoe: TShoes }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
   const [deleteShoe, { isLoading }] = useDeleteShoeMutation();
 
@@ -52,12 +53,12 @@ const ShoeCard = ({ shoe }: { shoe: TShoes }) => {
           </span>
         </div>
         <div className="px-6 py-4 grid grid-cols-2 gap-3">
-          <Link
-            to={`/update/${shoe?._id}`}
+          <button
+          onClick={()=>setIsUpdateModalOpen(!isUpdateModalOpen)}
             className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline"
           >
             Update
-          </Link>
+          </button>
           <button
             onClick={() => handleDeleteShoe(shoe?._id)}
             className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline"
@@ -73,6 +74,7 @@ const ShoeCard = ({ shoe }: { shoe: TShoes }) => {
         </div>
       </div>
       <InfoModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <UpdateShoe isModalOpen={isUpdateModalOpen} setIsModalOpen={setIsUpdateModalOpen} shoe={shoe}/>
     </div>
   );
 };

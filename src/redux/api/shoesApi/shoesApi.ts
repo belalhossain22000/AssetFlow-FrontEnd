@@ -4,7 +4,7 @@ import { baseApi } from "../baseApi";
 
 const shoesApi = baseApi.injectEndpoints({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    endpoints: (builder:any) => ({
+    endpoints: (builder: any) => ({
         shoes: builder.query({
             query: () => ({
                 url: '/shoes',
@@ -13,14 +13,14 @@ const shoesApi = baseApi.injectEndpoints({
             providesTags: ["shoe"]
         }),
         shoe: builder.query({
-            query: (id:string) => ({
+            query: (id: string) => ({
                 url: `/shoes/${id}`,
                 method: "GET",
             })
         }),
 
         addShoe: builder.mutation({
-            query: (shoeInfo:TShoes) => ({
+            query: (shoeInfo: TShoes) => ({
                 url: '/shoes/add-shoes',
                 method: "POST",
                 body: shoeInfo
@@ -29,16 +29,20 @@ const shoesApi = baseApi.injectEndpoints({
         }),
 
         updateShoe: builder.mutation({
-            query: ({ shoeInfo, id }:{shoeInfo:TShoes,id:string} ) => ({
-                url: `/shoes/${id}`,
-                method: "PUT",
-                body: shoeInfo
-            }),
-            invalidatesTags: ["shoe"]
+            query: ({ shoeInfo, id }: { shoeInfo: TShoes; id: string }) => {
+             
+
+                return ({
+                    url: `/shoes/update/${id}`,
+                    method: "PUT",
+                    body: shoeInfo
+                })
+            },
+            invalidatesTags: ['shoe']
         }),
 
         deleteShoe: builder.mutation({
-            query: (id:string) => ({
+            query: (id: string) => ({
                 url: `/shoes/delete/${id}`,
                 method: "DELETE",
 
@@ -49,4 +53,4 @@ const shoesApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useShoesQuery, useAddShoeMutation, useDeleteShoeMutation, useShoeQuery } = shoesApi
+export const { useShoesQuery, useAddShoeMutation, useDeleteShoeMutation, useShoeQuery, useUpdateShoeMutation } = shoesApi

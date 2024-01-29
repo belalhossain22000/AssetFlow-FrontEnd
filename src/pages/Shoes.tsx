@@ -1,10 +1,17 @@
+import { useState } from "react";
 import ShoeCard from "../components/ShoeCard/ShoeCard";
 import { useShoesQuery } from "../redux/api/shoesApi/shoesApi";
 import { TShoes } from "../type/shoe.type";
 
 const Shoes = () => {
   const { data,isLoading } = useShoesQuery(undefined);
+  const [searchText, setSearchText] = useState("");
 
+  const filteredShoes = data?.data?.filter((shoe: TShoes) =>
+    Object.values(shoe).some((value) =>
+      value.toString().toLowerCase().includes(searchText.toLowerCase())
+    )
+  );
 if(isLoading){
   return <h1>loading...</h1>
 }
@@ -16,13 +23,22 @@ if(isLoading){
           className="w-1/3 px-4 py-2 text-lg rounded-md border-2 border-green-600 text-gray-600 outline-green-500"
           placeholder="Search your Shoes"
           type="text"
+          onChange={(e) => setSearchText(e.target.value)}
         />
         <button className="bg-green-600 text-white px-4 py-2 rounded-md text-lg">
           Search
         </button>
       </div>
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {data?.data?.map((shoe:TShoes) =>  <ShoeCard shoe={shoe} key={shoe._id}/>)}
+      {filteredShoes.length > 0 ? (
+          filteredShoes.map((shoe: TShoes) => (
+            <ShoeCard shoe={shoe} key={shoe._id} />
+          ))
+        ) : (
+          data?.data?.map((shoe: TShoes) => (
+            <ShoeCard shoe={shoe} key={shoe._id} />
+          ))
+        )}
       
       </div>
     </div>
