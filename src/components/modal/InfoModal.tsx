@@ -3,10 +3,13 @@ import React from "react";
 import Form from "../form/Form";
 import FormInput from "../form/FormInput";
 import { FieldValues } from "react-hook-form";
+import { useSellShoeMutation } from "../../redux/api/sellApi/sellApi";
 const InfoModal = ({
   setIsModalOpen,
   isModalOpen,
+  id,
 }: {
+  id: string;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
@@ -14,8 +17,22 @@ const InfoModal = ({
     setIsModalOpen(false);
   };
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data);
+  const [sellShoe, { isLoading }] = useSellShoeMutation();
+
+  const onSubmit = async (data: FieldValues) => {
+    try {
+      data.quantity = parseInt(data.quantity);
+      const sellInfo = {
+        ...data,
+        productId: id,
+      };
+      const res = await sellShoe(sellInfo).unwrap();
+      console.log(res);
+      handleCancel();
+    } catch (error) {
+      console.log(error);
+      alert("something went wrong")
+    }
   };
 
   return (
@@ -26,7 +43,7 @@ const InfoModal = ({
       footer={null}
     >
       <Form onSubmit={onSubmit}>
-        <FormInput type="text" name="name" label="Customer name" />
+        <FormInput type="text" name="buyerName" label="Customer name" />
         <FormInput type="number" name="quantity" label="Quantity" />
         <FormInput type="date" name="saleDate" label="Sale Date" />
 
@@ -34,7 +51,7 @@ const InfoModal = ({
           className="w-full bg-green-600 p-3 rounded-md text-white text-lg font-semibold hover:bg-green-700 transition duration-300"
           type="submit"
         >
-          Sell
+          {isLoading ? "Loading..." : "sell"}
         </button>
       </Form>
     </Modal>

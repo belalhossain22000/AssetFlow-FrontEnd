@@ -73,7 +73,7 @@ const ShoeCard = ({ shoe }: { shoe: TShoes }) => {
           </button>
         </div>
       </div>
-      <InfoModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <InfoModal id={shoe?._id} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       <UpdateShoe isModalOpen={isUpdateModalOpen} setIsModalOpen={setIsUpdateModalOpen} shoe={shoe}/>
     </div>
   );
