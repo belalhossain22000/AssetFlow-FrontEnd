@@ -2,7 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 
 
-export const baseApi = createApi({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const baseApi:any = createApi({
     reducerPath: 'baseApi',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:5000/api',
@@ -15,6 +16,8 @@ export const baseApi = createApi({
 
             return headers;
         },
+
     }),
+    tagTypes: ['shoe'],
     endpoints: () => ({})
 })

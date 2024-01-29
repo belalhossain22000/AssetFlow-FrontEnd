@@ -2,6 +2,7 @@ import AddShoes from "../pages/AddShoes";
 import Dashboard from "../pages/Dashboard";
 import Shoes from "../pages/Shoes";
 
+
 export const routePaths = [
     {
       name: 'Dashboard',
@@ -9,8 +10,8 @@ export const routePaths = [
       element: <Dashboard />,
     },
     {
-      name: 'Shoes',
-      path: 'shoes',
+      name: 'My shop',
+      path: 'my-shop',
       element: <Shoes />,
     },
     {
@@ -18,6 +19,7 @@ export const routePaths = [
       path: 'add-shoes',
       element: <AddShoes />,
     },
+   
    
   ];
   
