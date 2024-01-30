@@ -12,7 +12,7 @@ const sellApi = baseApi.injectEndpoints({
                 method: "POST",
                 body:sellInfo
             }),
-            providesTags: ["shoe"]
+            invalidatesTags: ["sell"]
         }),
 
     })

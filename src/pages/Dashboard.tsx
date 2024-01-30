@@ -8,7 +8,66 @@ const Dashboard = () => {
   const { todaySale, lastWeekSale, lastMonthSale, lastYearSale } =
     data?.data || {};
 
-  console.log(data?.data);
+  // calculate today total sale
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const todayTotalSale = todaySale?.reduce(
+    (
+      total: number,
+      saleItem: { quantity: number; productId: { price: number } }
+    ) => {
+      const {
+        quantity,
+        productId: { price },
+      } = saleItem;
+      return total + quantity * price;
+    },
+    0
+  );
+  // calculate today total sale
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const weeklyTotalSale = lastWeekSale?.reduce(
+    (
+      total: number,
+      saleItem: { quantity: number; productId: { price: number } }
+    ) => {
+      const {
+        quantity,
+        productId: { price },
+      } = saleItem;
+      return total + quantity * price;
+    },
+    0
+  );
+  // calculate today total sale
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const monthlyTotalSale = lastMonthSale?.reduce(
+    (
+      total: number,
+      saleItem: { quantity: number; productId: { price: number } }
+    ) => {
+      const {
+        quantity,
+        productId: { price },
+      } = saleItem;
+      return total + quantity * price;
+    },
+    0
+  );
+  // calculate today total sale
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const yearlyTotalSale = lastYearSale?.reduce(
+    (
+      total: number,
+      saleItem: { quantity: number; productId: { price: number } }
+    ) => {
+      const {
+        quantity,
+        productId: { price },
+      } = saleItem;
+      return total + quantity * price;
+    },
+    0
+  );
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -18,7 +77,7 @@ const Dashboard = () => {
     <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
       <div>
         <div className="w-full  ">
-          <TotalSaleCard time={"Today"} totalSale={56456} />
+          <TotalSaleCard time={"Today"} totalSale={todayTotalSale} />
         </div>
         <div className="border-2 border-green-600 rounded-md px-2 py-4 my-5">
           <TopCustomer sale={todaySale} />
@@ -26,7 +85,7 @@ const Dashboard = () => {
       </div>
       <div>
         <div className="w-full ">
-          <TotalSaleCard time={"Last Week"} totalSale={56456} />
+          <TotalSaleCard time={"Last Week"} totalSale={weeklyTotalSale} />
         </div>
         <div className="border-2 border-green-600 rounded-md px-2 py-4 my-5">
           <TopCustomer sale={lastWeekSale} />
@@ -34,18 +93,18 @@ const Dashboard = () => {
       </div>
       <div>
         <div className="w-full ">
-          <TotalSaleCard time={"Last Month"} totalSale={56456}/>
+          <TotalSaleCard time={"Last Month"} totalSale={monthlyTotalSale} />
         </div>
         <div className="border-2 border-green-600 rounded-md px-2 py-4 my-5">
-          <TopCustomer sale={lastMonthSale}/>
+          <TopCustomer sale={lastMonthSale} />
         </div>
       </div>
       <div>
         <div className="w-full ">
-          <TotalSaleCard time={"Last year"} totalSale={56456} />
+          <TotalSaleCard time={"Last year"} totalSale={yearlyTotalSale} />
         </div>
         <div className="border-2 border-green-600 rounded-md px-2 py-4 my-5">
-          <TopCustomer sale={lastYearSale}/>
+          <TopCustomer sale={lastYearSale} />
         </div>
       </div>
     </div>

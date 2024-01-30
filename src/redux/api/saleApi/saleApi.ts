@@ -9,7 +9,7 @@ const saleApi = baseApi.injectEndpoints({
                 url: '/sale/history',
                 method: "GET",
             }),
-            providesTags: ["shoe"]
+            providesTags: ["shoe","sell"]
         }),
        
     })
