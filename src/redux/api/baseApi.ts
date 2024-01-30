@@ -18,6 +18,6 @@ export const baseApi:any = createApi({
         },
 
     }),
-    tagTypes: ['shoe'],
+    tagTypes: ['shoe','sell'],
     endpoints: () => ({})
 })
