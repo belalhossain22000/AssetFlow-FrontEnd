@@ -8,6 +8,7 @@ import UpdateShoe from "../../pages/UpdateShoe";
 const ShoeCard = ({ shoe }: { shoe: TShoes }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false);
 
   const [deleteShoe, { isLoading }] = useDeleteShoeMutation();
 
@@ -54,7 +55,7 @@ const ShoeCard = ({ shoe }: { shoe: TShoes }) => {
         </div>
         <div className="px-6 py-4 grid grid-cols-2 gap-3">
           <button
-          onClick={()=>setIsUpdateModalOpen(!isUpdateModalOpen)}
+            onClick={() => setIsUpdateModalOpen(!isUpdateModalOpen)}
             className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline"
           >
             Update
@@ -65,16 +66,39 @@ const ShoeCard = ({ shoe }: { shoe: TShoes }) => {
           >
             {isLoading ? " Deleting" : "Delete"}
           </button>
+
+          <button
+            onClick={() => setIsDuplicateModalOpen(!isDuplicateModalOpen)}
+            className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px- rounded focus:outline-none focus:shadow-outline"
+          >
+            Create Variant
+          </button>
+
           <button
             onClick={showModal}
-            className="bg-green-600 col-span-2 hover:bg-green-700 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline"
+            className="bg-green-600  hover:bg-green-700 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline"
           >
             Sell
           </button>
         </div>
       </div>
-      <InfoModal id={shoe?._id} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-      <UpdateShoe isModalOpen={isUpdateModalOpen} setIsModalOpen={setIsUpdateModalOpen} shoe={shoe}/>
+      <InfoModal
+        id={shoe?._id}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      />
+      <UpdateShoe
+        isModalOpen={isUpdateModalOpen}
+        setIsModalOpen={setIsUpdateModalOpen}
+        shoe={shoe}
+        mode={"update"}
+      />
+      <UpdateShoe
+        isModalOpen={isDuplicateModalOpen}
+        setIsModalOpen={setIsDuplicateModalOpen}
+        shoe={shoe}
+        mode={"duplicate"}
+      />
     </div>
   );
 };

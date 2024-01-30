@@ -1,7 +1,10 @@
 import { FieldValues } from "react-hook-form";
 import Form from "../components/form/Form";
 import FormInput from "../components/form/FormInput";
-import { useUpdateShoeMutation } from "../redux/api/shoesApi/shoesApi";
+import {
+  useAddShoeMutation,
+  useUpdateShoeMutation,
+} from "../redux/api/shoesApi/shoesApi";
 import { Modal } from "antd";
 import React from "react";
 import { TShoes } from "../type/shoe.type";
@@ -10,16 +13,18 @@ const UpdateShoe = ({
   setIsModalOpen,
   isModalOpen,
   shoe,
+  mode,
 }: {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   shoe: TShoes;
+  mode: "update" | "duplicate";
 }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
-  const [updateShoe, { isLoading }] = useUpdateShoeMutation();
+  const [addShoe,{isLoading:isAdding}] = useAddShoeMutation();
+  const [updateShoe, { isLoading:isUpdating }] = useUpdateShoeMutation();
 
   const defaultValues = {
     name: shoe?.name,
@@ -42,10 +47,18 @@ const UpdateShoe = ({
     data.price = parseInt(data.price);
     data.quantity = parseInt(data.quantity);
     try {
-      await updateShoe({ shoeInfo: data, id: shoe?._id });
-      handleCancel()
+      if (mode === "update") {
+        await updateShoe({ shoeInfo: data, id: shoe?._id });
+        handleCancel();
+        alert('Shoe updated success')
+      } else if (mode === "duplicate") {
+        await addShoe(data);
+        handleCancel();
+        alert('Shoe Duplicated success')
+      }
     } catch (error) {
       console.log(error);
+      alert('something went wrong')
     }
   };
 
@@ -87,7 +100,7 @@ const UpdateShoe = ({
             className="w-full bg-green-600 p-3 rounded-md text-white text-lg font-semibold hover:bg-green-700 transition duration-300"
             type="submit"
           >
-            {isLoading ? " Updating" : "Update"}
+           {mode === 'update' ? (isUpdating ? 'Updating' : 'Update') : (isAdding ? 'Adding' : 'Add')}
           </button>
         </Form>
       </Modal>
