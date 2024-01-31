@@ -1,30 +1,55 @@
-# React + TypeScript + Vite
+# Inventory Management Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Project Image](url_to_project_image)
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Introduction](#introduction)
+- [Features](#features)
+- [Live Demo](#live-demo)
+- [Technologies Used](#technologies-used)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Expanding the ESLint configuration
+## Introduction
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Inventory Management Frontend is a web application designed to help businesses manage their inventory efficiently. It provides a user-friendly interface for viewing, adding, updating, and deleting inventory items. This frontend application works in conjunction with a backend server to handle data storage and retrieval.
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- View a list of inventory items
+- Add new inventory items
+- Update existing inventory items
+- Delete inventory items
+- Filter inventory items based on various criteria
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Live Demo
+
+A live demo of the application can be accessed at [Live Demo URL](url_to_live_demo).
+
+## Technologies Used
+
+- React.js
+- Redux Toolkit
+- React Router DOM
+- Ant Design
+- Tailwind CSS
+- TypeScript
+- JWT Decode
+- Eslint
+- Vite
+
+## Setup
+
+To set up the project locally, follow these steps:
+
+1. Clone the repository: `git clone <repository_url>`
+2. Navigate to the project directory: `cd inventory-management-frontend`
+3. Install dependencies: `npm install`
+
+## Usage
+
+To start the development server, run:
+
