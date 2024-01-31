@@ -5,7 +5,7 @@ import {  useDeleteShoeMutation } from "../../redux/api/shoesApi/shoesApi";
 import UpdateShoe from "../../pages/UpdateShoe";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ShoeCard = ({ shoe,clickedCards,handleCardClick }: { shoe: TShoes;clickedCards:boolean;handleCardClick:void }) => {
+const ShoeCard = ({ shoe,clickedCards,handleCardClick }: { shoe: TShoes;clickedCards:boolean;handleCardClick: (id: string) => void;}) => {
  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
