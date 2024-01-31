@@ -3,6 +3,7 @@ import TopCustomer from "../components/TopCustomer/TopCustomer";
 import { useSaleHistoryQuery } from "../redux/api/saleApi/saleApi";
 
 const Dashboard = () => {
+
   const { data, isLoading } = useSaleHistoryQuery(undefined);
 
   const { todaySale, lastWeekSale, lastMonthSale, lastYearSale } =
@@ -13,13 +14,20 @@ const Dashboard = () => {
   const todayTotalSale = todaySale?.reduce(
     (
       total: number,
-      saleItem: { quantity: number; productId: { price: number } }
+      saleItem: { quantity: number; productId?: { price?: number } }
     ) => {
       const {
         quantity,
-        productId: { price },
+        productId
       } = saleItem;
-      return total + quantity * price;
+  
+      // Check if productId exists and has a price
+      if (productId && productId.price !== undefined) {
+        return total + (quantity * productId.price);
+      } else {
+        // Handle the case where productId or price is null or undefined
+        return total;
+      }
     },
     0
   );
@@ -28,13 +36,20 @@ const Dashboard = () => {
   const weeklyTotalSale = lastWeekSale?.reduce(
     (
       total: number,
-      saleItem: { quantity: number; productId: { price: number } }
+      saleItem: { quantity: number; productId?: { price?: number } }
     ) => {
       const {
         quantity,
-        productId: { price },
+        productId
       } = saleItem;
-      return total + quantity * price;
+  
+      // Check if productId exists and has a price
+      if (productId && productId.price !== undefined) {
+        return total + (quantity * productId.price);
+      } else {
+        // Handle the case where productId or price is null or undefined
+        return total;
+      }
     },
     0
   );
@@ -43,13 +58,20 @@ const Dashboard = () => {
   const monthlyTotalSale = lastMonthSale?.reduce(
     (
       total: number,
-      saleItem: { quantity: number; productId: { price: number } }
+      saleItem: { quantity: number; productId?: { price?: number } }
     ) => {
       const {
         quantity,
-        productId: { price },
+        productId
       } = saleItem;
-      return total + quantity * price;
+  
+      // Check if productId exists and has a price
+      if (productId && productId.price !== undefined) {
+        return total + (quantity * productId.price);
+      } else {
+        // Handle the case where productId or price is null or undefined
+        return total;
+      }
     },
     0
   );
@@ -58,13 +80,20 @@ const Dashboard = () => {
   const yearlyTotalSale = lastYearSale?.reduce(
     (
       total: number,
-      saleItem: { quantity: number; productId: { price: number } }
+      saleItem: { quantity: number; productId?: { price?: number } }
     ) => {
       const {
         quantity,
-        productId: { price },
+        productId
       } = saleItem;
-      return total + quantity * price;
+  
+      // Check if productId exists and has a price
+      if (productId && productId.price !== undefined) {
+        return total + (quantity * productId.price);
+      } else {
+        // Handle the case where productId or price is null or undefined
+        return total;
+      }
     },
     0
   );

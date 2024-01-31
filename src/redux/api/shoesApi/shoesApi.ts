@@ -50,7 +50,17 @@ const shoesApi = baseApi.injectEndpoints({
             invalidatesTags: ['shoe']
         }),
 
+        bulkDeleteShoe: builder.mutation({
+            query: (ids: string[]) => ({
+                url: `shoes/bulk-delete`,
+                method: "DELETE",
+                body:ids
+
+            }),
+            invalidatesTags: ['shoe']
+        }),
+
     })
 })
 
-export const { useShoesQuery, useAddShoeMutation, useDeleteShoeMutation, useShoeQuery, useUpdateShoeMutation } = shoesApi
+export const { useShoesQuery, useAddShoeMutation, useDeleteShoeMutation, useShoeQuery, useUpdateShoeMutation,useBulkDeleteShoeMutation } = shoesApi

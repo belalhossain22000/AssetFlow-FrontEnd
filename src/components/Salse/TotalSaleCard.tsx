@@ -18,7 +18,7 @@ const TotalSaleCard = ({
           </h1>
           <div className="flex items-start flex-col gap-2">
             <p className="text-lg font-semibold">{time} Total Sale </p>
-            <p>$ {totalSale.toFixed(2)}</p>
+            <p>$ {totalSale?.toFixed(2)}</p>
           </div>
         </div>
       </div>

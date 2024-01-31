@@ -1,17 +1,19 @@
 import { TShoes } from "../../type/shoe.type";
 import {  useState } from "react";
 import InfoModal from "../modal/InfoModal";
-import { useDeleteShoeMutation } from "../../redux/api/shoesApi/shoesApi";
+import {  useDeleteShoeMutation } from "../../redux/api/shoesApi/shoesApi";
 import UpdateShoe from "../../pages/UpdateShoe";
-const ids: string[] = [];
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ShoeCard = ({ shoe }: { shoe: TShoes }) => {
-  const [clickedCards, setClickedCards] = useState(false);
+const ShoeCard = ({ shoe,clickedCards,handleCardClick }: { shoe: TShoes;clickedCards:boolean;handleCardClick:void }) => {
+ 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false);
 
   const [deleteShoe, { isLoading }] = useDeleteShoeMutation();
+
+ 
 
   //modal hancler
   const showModal = () => {
@@ -31,20 +33,7 @@ const ShoeCard = ({ shoe }: { shoe: TShoes }) => {
     }
   };
 
-  // bulk delete handler
-  const handleCardClick = (id: string) => {
-    setClickedCards(!clickedCards)
-    const isExist = ids.includes(id);
-    if (!isExist) {
-      ids.push(id);
-    } else {
-      const index = ids.indexOf(id);
-      if (index !== -1) {
-        ids.splice(index, 1);
-      }
-    }
-    console.log(ids)
-  };
+ 
 
   return (
     <div
