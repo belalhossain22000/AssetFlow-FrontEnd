@@ -93,12 +93,13 @@ const Shoes = () => {
   }
   return (
     <div className="overflow-hidden">
-      <h2 className="text-center font-semibold text-3xl mb-3 text-gray-600 relative">
+      {/* search shoe */}
+      <h2 className="text-center font-semibold text-xl md:text-3xl mb-3 text-gray-600 relative">
         Search Shoes
       </h2>
-      <div className="flex items-center justify-center gap-5">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-5">
         <input
-          className="w-1/3 px-4 py-2 text-lg rounded-md border-2 border-green-600 text-gray-600 outline-green-500"
+          className="md:w-1/3 w-full px-4 py-2 text-lg rounded-md border-2 border-green-600 text-gray-600 outline-green-500"
           placeholder="Search your Shoes"
           type="text"
           onChange={(e) => setSearchText(e.target.value)}
@@ -107,7 +108,9 @@ const Shoes = () => {
           Search
         </button>
       </div>
-      <div className="flex justify-end">
+
+      {/* filter */}
+      <div className="flex justify-end my-5">
         <button
           onClick={() => setIsSideBarOpen(!isSidebarOpen)}
           className="bg-green-600 text-white px-5 py-2 text-lg font-semibold rounded-md"
@@ -116,7 +119,7 @@ const Shoes = () => {
         </button>
       </div>
       <div
-        className={`w-full md:w-1/4 bg-green-200 p-4 transition duration-400 rounded-lg absolute overflow-y-scroll z-20  ${
+        className={`w-full md:w-1/4 bg-green-200 p-4 transition duration-700 rounded-lg absolute overflow-y-scroll z-20  ${
           isSidebarOpen
             ? "  right-0 top-16 "
             : "translate-x-[3000px] right-0 top-16"

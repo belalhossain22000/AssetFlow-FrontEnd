@@ -42,13 +42,13 @@ const Login = () => {
   };
 
   return (
-    <Row  className="w-full md:w-1/2 mx-auto h-[100vh]" justify="center" align="middle">
+    <Row  className="w-full px-5 md:w-1/2 mx-auto h-[100vh]" justify="center" align="middle">
       <Form  onSubmit={onSubmit} defaultValues={defaultValues}>
         <h2 className="font-semibold text-5xl my-12 text-center text-gray-600">Login Here </h2>
         <FormInput type="text" name="username" label="User Name" />
         <FormInput type="text" name="password" label="Password" />
         <button
-          className="w-full bg-green-600 p-3 rounded-md text-white text-lg font-semibold hover:bg-green-700 transition duration-300" 
+          className="w-full mt-5 bg-green-600 p-3 rounded-md text-white text-lg font-semibold hover:bg-green-700 transition duration-300" 
           type="submit"
         >
           {isLoading ? "Logging in" : "Login"}

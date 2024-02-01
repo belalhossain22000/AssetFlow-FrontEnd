@@ -17,23 +17,24 @@ const MainLayout = () => {
 
   return (
     <Layout className="h-full min-h-[100vh] relative overflow-hidden ">
-      <Sider breakpoint="lg" collapsedWidth="0" className="bg-green-600">
-        <div className="demo-logo-vertical text-white flex items-center justify-center text-2xl h-20 font-bold">
+      <Sider breakpoint="lg" collapsedWidth="0" className="bg-green-600 ">
+        <div className="demo-logo-vertical text-white flex items-center justify-center text-2xl h-20 font-bold bg-green-600">
           <h1>AssetFlow</h1>
         </div>
         <Menu
-          theme="dark"
+        className="h-full bg-green-600 text-white font-semibold text-lg"
+       
           mode="inline"
-          defaultSelectedKeys={["4"]}
+          defaultSelectedKeys={["Dashboard"]}
           items={sidebarItemsGenerator(routePaths, user!.role)}
         />
       </Sider>
       <Layout>
         <Header
           style={{ padding: 0 }}
-          className="flex justify-end items-center"
+          className="flex justify-end items-center bg-green-600 px-5"
         >
-          <Button onClick={handleLogout} className="text-white ">
+          <Button onClick={handleLogout} className="text-white hover:bg-white hover:text-black">
             LogOut
           </Button>
         </Header>

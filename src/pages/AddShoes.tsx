@@ -25,7 +25,7 @@ const AddShoes = () => {
         <h2 className="font-semibold text-3xl mb-12 text-center text-gray-600">
           Add a Product
         </h2>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <FormInput type="text" name="name" label="Shoe Name" />
           <FormInput type="text" name="image" label="Image Url" />
           <FormInput type="text" name="price" label="Price" />

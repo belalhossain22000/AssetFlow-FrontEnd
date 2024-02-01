@@ -33,7 +33,7 @@ const Register = () => {
   return (
     <div>
       <Row
-        className="w-full md:w-1/2 mx-auto"
+        className="w-full md:w-1/2 mx-auto px-5"
         justify="center"
         align="middle"
         style={{ height: "100vh" }}
@@ -44,7 +44,7 @@ const Register = () => {
           <FormInput type="text" name="password" label="Password" />
           <button
             type="submit"
-            className="bg-green-600 px-5 py-3 font-semibold text-white w-full rounded-md"
+            className="bg-green-600 mt-5 px-5 py-3 font-semibold text-white w-full rounded-md"
           >
             {isLoading ? "Signing Up" : "Sign Up"}
           </button>

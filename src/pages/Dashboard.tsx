@@ -3,51 +3,39 @@ import TopCustomer from "../components/TopCustomer/TopCustomer";
 import { useSaleHistoryQuery } from "../redux/api/saleApi/saleApi";
 
 const Dashboard = () => {
-
   const { data, isLoading } = useSaleHistoryQuery(undefined);
 
   const { todaySale, lastWeekSale, lastMonthSale, lastYearSale } =
     data?.data || {};
-
+  console.log(todaySale);
   // calculate today total sale
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const todayTotalSale = todaySale?.reduce(
-    (
-      total: number,
-      saleItem: { quantity: number; productId?: { price?: number } }
-    ) => {
-      const {
-        quantity,
-        productId
-      } = saleItem;
+    (total: number, saleItem: { quantity: number; price?: number }) => {
+      const { quantity, price } = saleItem;
   
-      // Check if productId exists and has a price
-      if (productId && productId.price !== undefined) {
-        return total + (quantity * productId.price);
+      // Check if price  number
+      if (typeof price === 'number') {
+        return total + quantity * price;
       } else {
-        // Handle the case where productId or price is null or undefined
+        
         return total;
       }
     },
     0
   );
+  
   // calculate today total sale
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const weeklyTotalSale = lastWeekSale?.reduce(
-    (
-      total: number,
-      saleItem: { quantity: number; productId?: { price?: number } }
-    ) => {
-      const {
-        quantity,
-        productId
-      } = saleItem;
+    (total: number, saleItem: { quantity: number; price?: number }) => {
+      const { quantity, price } = saleItem;
   
-      // Check if productId exists and has a price
-      if (productId && productId.price !== undefined) {
-        return total + (quantity * productId.price);
+      // Check if price  number
+      if (typeof price === 'number') {
+        return total + quantity * price;
       } else {
-        // Handle the case where productId or price is null or undefined
+        
         return total;
       }
     },
@@ -56,20 +44,14 @@ const Dashboard = () => {
   // calculate today total sale
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const monthlyTotalSale = lastMonthSale?.reduce(
-    (
-      total: number,
-      saleItem: { quantity: number; productId?: { price?: number } }
-    ) => {
-      const {
-        quantity,
-        productId
-      } = saleItem;
+    (total: number, saleItem: { quantity: number; price?: number }) => {
+      const { quantity, price } = saleItem;
   
-      // Check if productId exists and has a price
-      if (productId && productId.price !== undefined) {
-        return total + (quantity * productId.price);
+      // Check if price  number
+      if (typeof price === 'number') {
+        return total + quantity * price;
       } else {
-        // Handle the case where productId or price is null or undefined
+        
         return total;
       }
     },
@@ -78,20 +60,14 @@ const Dashboard = () => {
   // calculate today total sale
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const yearlyTotalSale = lastYearSale?.reduce(
-    (
-      total: number,
-      saleItem: { quantity: number; productId?: { price?: number } }
-    ) => {
-      const {
-        quantity,
-        productId
-      } = saleItem;
+    (total: number, saleItem: { quantity: number; price?: number }) => {
+      const { quantity, price } = saleItem;
   
-      // Check if productId exists and has a price
-      if (productId && productId.price !== undefined) {
-        return total + (quantity * productId.price);
+      // Check if price  number
+      if (typeof price === 'number') {
+        return total + quantity * price;
       } else {
-        // Handle the case where productId or price is null or undefined
+        
         return total;
       }
     },
@@ -103,7 +79,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
       <div>
         <div className="w-full  ">
           <TotalSaleCard time={"Today"} totalSale={todayTotalSale} />
