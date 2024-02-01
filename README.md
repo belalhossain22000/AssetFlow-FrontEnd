@@ -4,7 +4,7 @@ Project Image![Alt text](image.png)
 
 ## Live URL
 
-Live Demo: https://tourmaline-crostata-3a2a2e.netlify.app/register
+ https://tourmaline-crostata-3a2a2e.netlify.app/register
 
 ## Description
 
