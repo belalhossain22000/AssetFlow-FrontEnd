@@ -1,19 +1,22 @@
 import { TShoes } from "../../type/shoe.type";
-import {  useState } from "react";
+import { useState } from "react";
 import InfoModal from "../modal/InfoModal";
-import {  useDeleteShoeMutation } from "../../redux/api/shoesApi/shoesApi";
+import { useDeleteShoeMutation } from "../../redux/api/shoesApi/shoesApi";
 import UpdateShoe from "../../pages/UpdateShoe";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ShoeCard = ({ shoe,clickedCards,handleCardClick }: { shoe: TShoes;clickedCards:boolean;handleCardClick: (id: string) => void;}) => {
- 
+const ShoeCard = ({
+  shoe,
+  handleCardClick,
+}: {
+  shoe: TShoes;
+  handleCardClick: (id: string) => void;
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false);
-
+  const [isChecked, setIsChecked] = useState(false);
   const [deleteShoe, { isLoading }] = useDeleteShoeMutation();
-
- 
 
   //modal hancler
   const showModal = () => {
@@ -33,15 +36,20 @@ const ShoeCard = ({ shoe,clickedCards,handleCardClick }: { shoe: TShoes;clickedC
     }
   };
 
- 
-
   return (
     <div
-      className={`max-w-xs overflow-hidden shadow-lg m-4 rounded-md ${
-        clickedCards ? "border border-red-500" : ""
+      className={`max-w-xs overflow-hidden shadow-lg m-4 rounded-md relative ${
+        isChecked ? "border border-red-500" : ""
       }`}
       onClick={() => handleCardClick(shoe._id)}
     >
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={() => setIsChecked(!isChecked)}
+        className="absolute top-0 left-0 mt-2 ml-2 z-20 cursor-pointer"
+      />
+
       <img
         className="w-full object-cover hover:scale-110 transition duration-500"
         src={shoe?.image}
@@ -66,7 +74,7 @@ const ShoeCard = ({ shoe,clickedCards,handleCardClick }: { shoe: TShoes;clickedC
             ${shoe?.price}
           </span>
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-          quantity: {shoe?.quantity}
+            quantity: {shoe?.quantity}
           </span>
         </div>
         <div className="px-6 py-4 grid grid-cols-2 gap-3">

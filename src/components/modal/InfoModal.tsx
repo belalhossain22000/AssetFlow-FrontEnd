@@ -26,12 +26,12 @@ const InfoModal = ({
         ...data,
         productId: id,
       };
-      const res = await sellShoe(sellInfo).unwrap();
-      console.log(res);
+      await sellShoe(sellInfo);
+      alert("sell created success");
       handleCancel();
     } catch (error) {
       console.log(error);
-      alert("something went wrong")
+      alert("Shoe not found");
     }
   };
 

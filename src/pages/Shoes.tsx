@@ -71,6 +71,7 @@ const Shoes = () => {
         ids.splice(index, 1);
       }
     }
+    console.log(ids)
   };
 
   const handleBulkDelete = async () => {
@@ -250,14 +251,14 @@ const Shoes = () => {
       </div>
 
       <div>
-        {clickedCards && (
+      
           <button
             onClick={handleBulkDelete}
             className="bg-red-500 px-6 py-3 rounded-md font-semibold text-lg text-white"
           >
             {isBulkDeleting ? "Deleting" : "Delete "}{" "}
           </button>
-        )}
+     
       </div>
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-">
@@ -269,7 +270,7 @@ const Shoes = () => {
                 shoe={shoe}
                 key={shoe._id}
                 handleCardClick={handleCardClick}
-                clickedCards={clickedCards}
+              
               />
             ))
           ) : (
@@ -282,7 +283,7 @@ const Shoes = () => {
               shoe={shoe}
               key={shoe._id}
               handleCardClick={handleCardClick}
-              clickedCards={clickedCards}
+             
             />
           ))
         ) : (

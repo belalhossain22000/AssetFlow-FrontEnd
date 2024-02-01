@@ -100,7 +100,7 @@ const UpdateShoe = ({
             className="w-full bg-green-600 p-3 mt-5 rounded-md text-white text-lg font-semibold hover:bg-green-700 transition duration-300"
             type="submit"
           >
-           {mode === 'update' ? (isUpdating ? 'Updating' : 'Update') : (isAdding ? 'Adding' : 'Add')}
+           {mode === 'update' ? (isUpdating ? 'Updating' : 'Update') : (isAdding ? 'Creating' : 'Create')}
           </button>
         </Form>
       </Modal>
