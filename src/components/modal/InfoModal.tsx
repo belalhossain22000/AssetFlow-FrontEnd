@@ -48,7 +48,7 @@ const InfoModal = ({
         <FormInput type="date" name="saleDate" label="Sale Date" />
 
         <button
-          className="w-full bg-green-600 p-3 rounded-md text-white text-lg font-semibold hover:bg-green-700 transition duration-300"
+          className="w-full mt-5 bg-green-600 p-3 rounded-md text-white text-lg font-semibold hover:bg-green-700 transition duration-300"
           type="submit"
         >
           {isLoading ? "Loading..." : "sell"}

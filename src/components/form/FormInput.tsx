@@ -9,7 +9,7 @@ type TInputProps = {
 
 const FormInput = ({ type, name, label }: TInputProps) => {
   return (
-    <div className="mb-4">
+    <div className="">
       {label ? <label className="block text-gray-700 font-semibold">{label}</label> : null}
       <Controller
         name={name}

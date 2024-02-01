@@ -42,7 +42,7 @@ const AddShoes = () => {
           <FormInput type="text-area" name="description" label="Description" />
         </div>
         <button
-          className="w-full bg-green-600 p-3 rounded-md text-white text-lg font-semibold hover:bg-green-700 transition duration-300"
+          className="w-full bg-green-600 p-3 rounded-md text-white text-lg font-semibold hover:bg-green-700 transition duration-300 mt-4"
           type="submit"
         >
           {isLoading ? "Adding Shoes" : "Add Shoes"}
