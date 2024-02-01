@@ -41,13 +41,14 @@ const ShoeCard = ({
       className={`max-w-xs overflow-hidden shadow-lg m-4 rounded-md relative ${
         isChecked ? "border border-red-500" : ""
       }`}
-      onClick={() => handleCardClick(shoe._id)}
+   
     >
       <input
+         onClick={() => handleCardClick(shoe._id)}
         type="checkbox"
         checked={isChecked}
         onChange={() => setIsChecked(!isChecked)}
-        className="absolute top-0 left-0 mt-2 ml-2 z-20 cursor-pointer"
+        className=" absolute top-0 left-0 mt-2 ml-2 z-20 cursor-pointer"
       />
 
       <img

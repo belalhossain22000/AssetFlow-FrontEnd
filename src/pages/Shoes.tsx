@@ -8,7 +8,6 @@ import {
 } from "../redux/api/shoesApi/shoesApi";
 import { TShoes } from "../type/shoe.type";
 
-
 const ids: string[] = [];
 
 const Shoes = () => {
@@ -43,14 +42,17 @@ const Shoes = () => {
     for (let key in filters) {
       if (
         filters[key as keyof typeof filters] !== "" &&
-        shoe[key as keyof TShoes]?.toString().toLowerCase().indexOf(filters[key as keyof typeof filters].toLowerCase()) === -1
+        shoe[key as keyof TShoes]
+          ?.toString()
+          .toLowerCase()
+          .indexOf(filters[key as keyof typeof filters].toLowerCase()) === -1
       ) {
         return false;
       }
     }
     return true;
   });
-  
+
   // handle filtering
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleFilterChange = (e: { target: { name: any; value: any } }) => {
@@ -71,7 +73,7 @@ const Shoes = () => {
         ids.splice(index, 1);
       }
     }
-    console.log(ids)
+    console.log(ids);
   };
 
   const handleBulkDelete = async () => {
@@ -82,6 +84,7 @@ const Shoes = () => {
       }
     } catch (error) {
       console.log(error);
+      alert("something went wrong")
     }
   };
 
@@ -251,14 +254,14 @@ const Shoes = () => {
       </div>
 
       <div>
-      
+        {ids.length > 0 && (
           <button
             onClick={handleBulkDelete}
             className="bg-red-500 px-6 py-3 rounded-md font-semibold text-lg text-white"
           >
-            {isBulkDeleting ? "Deleting" : "Delete "}{" "}
+            {isBulkDeleting ? "Deleting" : "Delete "}
           </button>
-     
+        )}
       </div>
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-">
@@ -270,7 +273,6 @@ const Shoes = () => {
                 shoe={shoe}
                 key={shoe._id}
                 handleCardClick={handleCardClick}
-              
               />
             ))
           ) : (
@@ -283,7 +285,6 @@ const Shoes = () => {
               shoe={shoe}
               key={shoe._id}
               handleCardClick={handleCardClick}
-             
             />
           ))
         ) : (
