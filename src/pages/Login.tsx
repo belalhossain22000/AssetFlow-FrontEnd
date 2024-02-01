@@ -4,7 +4,7 @@ import FormInput from "../components/form/FormInput";
 import { FieldValues } from "react-hook-form";
 import { useLoginMutation } from "../redux/api/authApi/authApi";
 import { verifyToken } from "../utils/verifyToken";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../redux/hooks";
 import { TUser, setUser } from "../redux/features/authSlice";
 import { toast } from "sonner";
@@ -37,12 +37,12 @@ const Login = () => {
       navigate(`/${user.role}/dashboard`);
       toast.success("Logged in", { id: toastId, duration: 2000 });
     } catch {
-      toast.error("Something went wrong", { id: toastId, duration: 2000 });
+      toast.error("Something went wrong login failed", { id: toastId, duration: 2000 });
     }
   };
 
   return (
-    <Row justify="center" align="middle" className="h-[100vh]">
+    <Row  className="w-full md:w-1/2 mx-auto h-[100vh]" justify="center" align="middle">
       <Form  onSubmit={onSubmit} defaultValues={defaultValues}>
         <h2 className="font-semibold text-5xl my-12 text-center text-gray-600">Login Here </h2>
         <FormInput type="text" name="username" label="User Name" />
@@ -53,6 +53,7 @@ const Login = () => {
         >
           {isLoading ? "Logging in" : "Login"}
         </button>
+        <p className="text-center mt-5">Don't have an account Register <Link to="/register" className="text-blue-500 hover:underline"> Register</Link></p>
       </Form>
     </Row>
   );
