@@ -8,7 +8,7 @@ import {
 } from "../redux/api/shoesApi/shoesApi";
 import { TShoes } from "../type/shoe.type";
 
-const ids: string[] = [];
+let ids: string[] = [];
 
 const Shoes = () => {
   const [clickedCards, setClickedCards] = useState(false);
@@ -80,11 +80,14 @@ const Shoes = () => {
     const isAllDelete = confirm("Are you Want to sure delete all");
     try {
       if (isAllDelete) {
-        await bulkDeleteShoe(ids);
+        const res = await bulkDeleteShoe(ids).unwrap();
+        if (res) {
+          ids = [];
+        }
       }
     } catch (error) {
       console.log(error);
-      alert("something went wrong")
+      alert("something went wrong");
     }
   };
 
