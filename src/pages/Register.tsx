@@ -39,6 +39,8 @@ const Register = () => {
         style={{ height: "100vh" }}
       >
         <Form onSubmit={onSubmit} defaultValues={defaultValues}>
+        <h2 className="font-semibold text-5xl my-12 text-center text-gray-600"> Register Your Account </h2>
+
           <FormInput type="text" name="username" label="User Name" />
           <FormInput type="email" name="email" label="Email" />
           <FormInput type="text" name="password" label="Password" />

@@ -41,10 +41,9 @@ const ShoeCard = ({
       className={`max-w-xs overflow-hidden shadow-lg m-4 rounded-md relative ${
         isChecked ? "border border-red-500" : ""
       }`}
-   
     >
       <input
-         onClick={() => handleCardClick(shoe._id)}
+        onClick={() => handleCardClick(shoe._id)}
         type="checkbox"
         checked={isChecked}
         onChange={() => setIsChecked(!isChecked)}
@@ -52,7 +51,7 @@ const ShoeCard = ({
       />
 
       <img
-        className="w-full object-cover hover:scale-110 transition duration-500"
+        className="w-full h-52 object-cover hover:scale-110 transition duration-500"
         src={shoe?.image}
         alt={shoe?.name}
       />
@@ -60,7 +59,7 @@ const ShoeCard = ({
       <div className="hover:-translate-y-3 transition duration-300">
         <div className="px-6 py-4 hover:translate-y-3">
           <div className="font-bold text-xl mb-2">{shoe?.name}</div>
-          <p className="text-gray-700 text-base">{shoe?.description}</p>
+          <p className="text-gray-700 text-base" >{shoe?.description.substring(0, 50) + '...'}</p>
         </div>
         <div className="px-6">
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
